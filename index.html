@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEC Site Survey Checklist - CSR Sustain</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #2D6A6A;
+            --primary-hover: #1F4A4A;
+            --secondary-color: #7FE5C9;
+            --light-bg: #F8FAFC;
+            --text-color: #1E293B;
+            --border-color: #E2E8F0;
+            --white: #FFFFFF;
+            --disabled-grey: #94A3B8;
+            --amber: #B45309;
+            --amber-bg: #FFFBEB;
+            --amber-border: #FDE68A;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 950px;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--secondary-color);
+        }
+
+        .header-text h1 {
+            margin: 0 0 5px 0;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .header-text p {
+            margin: 0;
+            color: #E2E8F0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .logo-placeholder {
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--white);
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .logo-placeholder span {
+            color: var(--secondary-color);
+        }
+
+        .progress-track {
+            height: 4px;
+            background: #E2E8F0;
+            width: 100%;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .mobile-step-heading {
+            display: none;
+            padding: 14px 20px;
+            background: #F1F5F9;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .category-tabs {
+            display: flex;
+            background: #F1F5F9;
+            border-bottom: 1px solid var(--border-color);
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .category-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-step {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px 10px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--disabled-grey);
+            text-align: center;
+            white-space: nowrap;
+            user-select: none;
+            cursor: not-allowed;
+            transition: all 0.2s ease;
+        }
+
+        .tab-step.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background-color: var(--white);
+            cursor: default;
+        }
+
+        .tab-step.completed {
+            color: #059669;
+            border-bottom-color: #A7F3D0;
+            cursor: pointer;
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2.section-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3.subsection-title {
+            font-size: 15px;
+            color: var(--primary-color);
+            margin: 30px 0 15px 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        h3.subsection-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .helper-text {
+            font-size: 12px;
+            color: #64748B;
+            margin: 0 0 10px 0;
+        }
+
+        .label-with-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: none;
+            background-color: #E2E8F0;
+            color: #475569;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 1;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .info-icon:hover, .info-icon.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .info-popover {
+            position: fixed;
+            display: none;
+            max-width: 280px;
+            background-color: var(--text-color);
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+            padding: 12px 14px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+        }
+
+        .info-popover.visible {
+            display: block;
+            animation: fadeIn 0.15s ease;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 4px;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        label.required-field::after {
+            content: " *";
+            color: #EF4444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text-color);
+            background-color: #FCFDFE;
+            transition: all 0.2s ease;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(45, 106, 106, 0.1);
+        }
+
+        .choice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .choice-list.inline {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .choice-list.inline .choice-item {
+            flex: 1;
+            min-width: 110px;
+        }
+
+        .choice-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #FCFDFE;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .choice-item:hover {
+            background-color: #F8FAFC;
+            border-color: #CBD5E1;
+        }
+
+        .choice-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+            margin: 0;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .rec-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+        }
+
+        .rec-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #FCFDFE;
+            transition: all 0.2s ease;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .rec-item:hover {
+            border-color: var(--secondary-color);
+            background-color: #F0FDFA;
+        }
+
+        .rec-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+            margin-top: 1px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .rec-item.checked {
+            border-color: var(--primary-color);
+            background-color: #F0FDFA;
+        }
+
+        .conditional-block {
+            display: none;
+            background-color: #F8FAFC;
+            border-left: 4px solid var(--primary-color);
+            padding: 25px;
+            margin-top: 15px;
+            border-radius: 0 12px 12px 0;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .conditional-block.amber {
+            border-left-color: var(--amber);
+            background-color: var(--amber-bg);
+            border-top-color: var(--amber-border);
+            border-right-color: var(--amber-border);
+            border-bottom-color: var(--amber-border);
+        }
+
+        .conditional-block h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .conditional-block.amber h4 {
+            color: var(--amber);
+        }
+
+        hr.divider {
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            margin: 30px 0;
+        }
+
+        .summary-box {
+            background-color: #F0FDFA;
+            border: 1px solid #A7F3D0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .summary-box textarea {
+            background-color: var(--white);
+            font-size: 13px;
+            min-height: 220px;
+        }
+
+        .summary-count {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 999px;
+            margin-left: 8px;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-secondary {
+            background-color: #E2E8F0;
+            color: #475569;
+        }
+
+        .btn-secondary:hover {
+            background-color: #CBD5E1;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ---- Mobile ---- */
+        @media (max-width: 700px) {
+            body {
+                padding: 0;
+            }
+
+            .container {
+                border-radius: 0;
+                box-shadow: none;
+                min-height: 100vh;
+            }
+
+            .header {
+                padding: 20px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .header-text h1 {
+                font-size: 19px;
+            }
+
+            .header-text p {
+                font-size: 12.5px;
+            }
+
+            .logo-placeholder {
+                font-size: 18px;
+            }
+
+            /* The full tab strip is hard to use on a narrow screen, so it's
+               replaced by a compact "Step X of Y" heading fed by the same
+               step data (see updateProgressBar in the script below). */
+            .category-tabs {
+                display: none;
+            }
+
+            .mobile-step-heading {
+                display: block;
+            }
+
+            .form-content {
+                padding: 24px 20px 100px 20px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            h2.section-title {
+                font-size: 18px;
+            }
+
+            .choice-list.inline {
+                flex-direction: column;
+            }
+
+            .choice-list.inline .choice-item {
+                min-width: 0;
+            }
+
+            .conditional-block {
+                padding: 18px;
+            }
+
+            .rec-item {
+                padding: 12px;
+            }
+
+            .footer-nav {
+                position: sticky;
+                bottom: 0;
+                background: var(--white);
+                margin: 32px -20px -24px -20px;
+                padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px)) 20px;
+                box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.06);
+            }
+
+            .btn {
+                padding: 14px 20px;
+                font-size: 15px;
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="header-text">
+            <h1>DEC Site Survey Checklist</h1>
+            <p>Field copy &mdash; verify against client responses on site. Tabs unlock as you proceed.</p>
+        </div>
+        <div class="logo-placeholder">CSR <span>Sustain</span></div>
+    </div>
+
+    <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="mobile-step-heading" id="mobileStepHeading">Step 1 of 8: Building Info</div>
+
+    <div class="category-tabs" id="tabBar">
+        <div class="tab-step active" id="step0" onclick="navigateToStep(0)">Building Info</div>
+        <div class="tab-step" id="step1" onclick="navigateToStep(1)">Operations & Fabric</div>
+        <div class="tab-step" id="step2" onclick="navigateToStep(2)">HVAC & Heating</div>
+        <div class="tab-step" id="step3" onclick="navigateToStep(3)">Ventilation & Cooling</div>
+        <div class="tab-step" id="step4" onclick="navigateToStep(4)">Lighting & Water</div>
+        <div class="tab-step" id="step5" onclick="navigateToStep(5)">Power & Special Systems</div>
+        <div class="tab-step" id="step6" onclick="navigateToStep(6)">Alt. Energy & Recs</div>
+        <div class="tab-step" id="step7" onclick="navigateToStep(7)">Notes & Sign Off</div>
+    </div>
+
+    <form id="decForm" class="form-content" onkeypress="return event.keyCode != 13;">
+
+        <!-- TAB 0: BUILDING INFO -->
+        <div class="tab-panel active">
+            <h2 class="section-title">Building Info</h2>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="buildingName" class="required-field">Building Name</label>
+                    <input type="text" id="buildingName" name="buildingName" required>
+                </div>
+                <div class="form-group">
+                    <label for="postcode" class="required-field">Postcode</label>
+                    <input type="text" id="postcode" name="postcode" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address1" class="required-field">Address (1st Line)</label>
+                <input type="text" id="address1" name="address1" required>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="surveyDate" class="required-field">Date of Survey</label>
+                    <input type="date" id="surveyDate" name="surveyDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="surveyTime" class="required-field">Time of Survey</label>
+                    <input type="time" id="surveyTime" name="surveyTime" required>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="surveyorName" class="required-field">Surveyor Name</label>
+                    <select id="surveyorName" name="surveyorName" required>
+                        <option value="">-- Choose --</option>
+                        <option value="Craig Kefford">Craig Kefford</option>
+                        <option value="Gary Cleary">Gary Cleary</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="buildingAge" class="required-field">Age of Building & Extensions</label>
+                    <input type="text" id="buildingAge" name="buildingAge" placeholder="Main building age followed by any extension ages" required>
+                </div>
+            </div>
+
+            <div class="form-group summary-box">
+                <label for="assessorEmail" class="required-field">Send Completed Report To (Assessor Email)</label>
+                <p class="helper-text">Once submitted, a full copy of your answers is emailed here as a printable summary.</p>
+                <input type="email" id="assessorEmail" name="to_email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="buildingUsage" class="required-field label-with-info">Building Usage <button type="button" class="info-icon" data-info="Describe activities within the building">i</button></label>
+                <select id="buildingUsage" name="buildingUsage" required>
+                    <option value="">-- Select Option --</option>
+                    <option value="General office">General office</option>
+                    <option value="Cultural activities">Cultural activities (Museum, art gallery etc.)</option>
+                    <option value="Entertainment halls">Entertainment halls</option>
+                    <option value="Schools and seasonal public buildings">Schools and seasonal public buildings</option>
+                    <option value="University campus">University campus</option>
+                    <option value="Emergency services">Emergency services</option>
+                    <option value="Swimming pool / sports complex">Swimming pool / sports complex</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="required-field">Have you identified which meters are supplying the building?</label>
+                <div class="choice-list inline" onchange="toggleConditionalBlock('metersIdentified', 'metersOtherBlock', ['Other'])">
+                    <label class="choice-item"><input type="radio" name="metersIdentified" value="Yes" required> Yes</label>
+                    <label class="choice-item"><input type="radio" name="metersIdentified" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="metersIdentified" value="Other"> Other</label>
+                </div>
+                <div id="metersOtherBlock" class="conditional-block">
+                    <label for="metersOtherText">Please specify</label>
+                    <input type="text" id="metersOtherText" name="metersOtherText">
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1: OPERATIONS & FABRIC -->
+        <div class="tab-panel">
+            <h2 class="section-title">Operational Management & Building Fabric</h2>
+
+            <h3 class="subsection-title">Operational Management</h3>
+            <div class="form-group">
+                <label class="label-with-info">Is energy managed effectively? <button type="button" class="info-icon" data-info="e.g. is there good evidence that responsibility for energy is allocated to specific person(s)? Are building users encouraged to save energy?">i</button></label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="energyManaged" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="energyManaged" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="energyManaged" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Have you established or got a signed declaration of the operating hours?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="operatingHoursDeclared" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="operatingHoursDeclared" value="No"> No</label>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Building Fabric &mdash; Possible Measures Applicable</h3>
+            <div class="rec-list">
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="High speed shutter doors"> High speed shutter doors</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Installing automatic doors or revolving doors"> Installing automatic doors or revolving doors</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Constructing draft lobbies"> Constructing draft lobbies</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Automatic closers to loading bay doors"> Automatic closers to loading bay doors</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Flexible plastic curtains on loading bay doors"> Flexible plastic curtains on loading bay doors</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Door interlock controls on air curtains"> Door interlock controls on air curtains</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Cavity wall insulation"> Cavity wall insulation</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Internal / external wall insulation"> Internal / external wall insulation</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Loft insulation"> Loft insulation</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Rafter insulation"> Rafter insulation</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Flat roof insulation"> Flat roof insulation</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Improved glazing"> Improved glazing</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Reflective coatings to windows"> Reflective coatings to windows</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Engage experts to review building fabric"> Engage experts to review building fabric</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricRecs" data-rec="Air tightness test"> Air tightness test</label>
+            </div>
+            <div class="form-group">
+                <label for="fabricOtherNotes">Other notes</label>
+                <textarea id="fabricOtherNotes" name="fabricOtherNotes"></textarea>
+            </div>
+        </div>
+
+        <!-- TAB 2: HVAC & HEATING -->
+        <div class="tab-panel">
+            <h2 class="section-title">HVAC Controls & Heating System</h2>
+
+            <h3 class="subsection-title">HVAC Controls &mdash; Possible Improvements</h3>
+            <div class="rec-list">
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacControlRecs" data-rec="Optimum start/stop"> Optimum start/stop</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacControlRecs" data-rec="Minimise simultaneous operation of heating and cooling"> Minimise simultaneous operation of heating and cooling</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacControlRecs" data-rec="Install time controls to plant and equipment"> Install time controls to plant and equipment</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacControlRecs" data-rec="Variable speed drives on fans, pumps and compressors"> Variable speed drives on fans, pumps and compressors</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacControlRecs" data-rec="Zone control"> Zone control</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacControlRecs" data-rec="Interlocks between heating and loading bay doors"> Interlocks between heating and loading bay doors</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacControlRecs" data-rec="Weather compensating controls (heating & cooling)"> Weather compensating controls (heating & cooling)</label>
+            </div>
+
+            <h3 class="subsection-title">Heating System</h3>
+            <div class="form-group">
+                <label>Is there a system in place that ensures annual expert checks are made on the heating system?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="heatingAnnualChecks" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="heatingAnnualChecks" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="heatingAnnualChecks" value="N/A"> N/A</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Is the heating plant free from any leaking, fouling, corrosion and is it suitably insulated?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="heatingPlantCondition" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="heatingPlantCondition" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="heatingPlantCondition" value="Don't know"> Don't know</label>
+                    <label class="choice-item"><input type="radio" name="heatingPlantCondition" value="N/A"> N/A</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Has the boiler plant energy performance inspection been carried out in the past 12 months?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="boilerInspection" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="boilerInspection" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="boilerInspection" value="Don't know"> Don't know</label>
+                    <label class="choice-item"><input type="radio" name="boilerInspection" value="N/A"> N/A</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Is the boiler 65% efficient?</label>
+                <div class="choice-list inline" onchange="toggleConditionalBlock('boiler65Efficient', 'boilerEfficiencyBlock', ['No', 'Unsure, need to check'], 'boilerEffRecs')">
+                    <label class="choice-item"><input type="radio" name="boiler65Efficient" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="boiler65Efficient" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="boiler65Efficient" value="Unsure, need to check"> Unsure, need to check</label>
+                    <label class="choice-item"><input type="radio" name="boiler65Efficient" value="N/A"> N/A</label>
+                </div>
+            </div>
+            <div id="boilerEfficiencyBlock" class="conditional-block amber">
+                <h4>Possible Recommendations (boiler below 65% efficient)</h4>
+                <div class="rec-list">
+                    <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="boilerEffRecs" data-rec="Replace boiler with a high efficiency type"> Replace boiler with a high efficiency type</label>
+                    <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="boilerEffRecs" data-rec="Engage experts to review overall heating strategy"> Engage experts to review overall heating strategy</label>
+                    <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="boilerEffRecs" data-rec="Consider a condensing boiler"> Consider a condensing boiler</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: VENTILATION & COOLING -->
+        <div class="tab-panel">
+            <h2 class="section-title">Ventilation & Cooling / Refrigeration</h2>
+
+            <h3 class="subsection-title">Ventilation</h3>
+            <div class="form-group">
+                <label>What type of ventilation strategy/system is installed?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="ventStrategy" value="Natural ventilation"> Natural ventilation</label>
+                    <label class="choice-item"><input type="radio" name="ventStrategy" value="Mechanical ventilation"> Mechanical ventilation</label>
+                    <label class="choice-item"><input type="radio" name="ventStrategy" value="Mixed Mode ventilation"> Mixed Mode ventilation</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Are there any obstructions or partitions preventing free cross flow of air?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="ventObstructions" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="ventObstructions" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="ventObstructions" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Are there any areas where stratification occurs?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="ventStratification" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="ventStratification" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="ventStratification" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Does the mechanical ventilation system have variable speed drives?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="ventVSD" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="ventVSD" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="ventVSD" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="ventVSD" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Are the mixed mode changeover controls appropriately set and are adjustments delegated to a suitably qualified person?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="mixedModeControls" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="mixedModeControls" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="mixedModeControls" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="mixedModeControls" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>If mixed mode ventilation, do the occupiers understand the various modes of ventilation and cooling options?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="mixedModeUnderstanding" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="mixedModeUnderstanding" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="mixedModeUnderstanding" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="mixedModeUnderstanding" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Cooling & Refrigeration</h3>
+            <div class="form-group">
+                <label class="label-with-info">Are the air conditioning systems in good condition? <button type="button" class="info-icon" data-info="i.e. free from leaking, fouling, corrosion, blockages &amp; suitably insulated?">i</button></label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="acCondition" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="acCondition" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="acCondition" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="acCondition" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Are the outdoor condensers clean and positioned in un-obstructed surroundings?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="condenserCondition" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="condenserCondition" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="condenserCondition" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="condenserCondition" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: LIGHTING & WATER -->
+        <div class="tab-panel">
+            <h2 class="section-title">Lighting & Domestic Hot Water</h2>
+
+            <h3 class="subsection-title">Lighting</h3>
+            <div class="form-group">
+                <label>Do luminaries appear clean and fully working?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="luminariesCondition" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="luminariesCondition" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Are the windows and skylights clean and free of obstruction?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="windowsSkylights" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="windowsSkylights" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="windowsSkylights" value="Windows clean but skylights dirty"> Windows clean but skylights dirty</label>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Domestic Hot Water (DHW)</h3>
+            <div class="form-group">
+                <label>Are the DHW systems in good condition?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="dhwCondition" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="dhwCondition" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="label-with-info">Are hot water saving devices fitted? <button type="button" class="info-icon" data-info="i.e. flow restrictors, diffusers and automatic switch off">i</button></label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="hwsSavingDevices" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="hwsSavingDevices" value="No"> No</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: POWER & SPECIAL SYSTEMS -->
+        <div class="tab-panel">
+            <h2 class="section-title">Small Power & Special Systems</h2>
+
+            <h3 class="subsection-title">Small Power</h3>
+            <div class="form-group">
+                <label>Is there evidence of computers and other electrical equipment left running, with no apparent reason?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="equipmentLeftRunning" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="equipmentLeftRunning" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="label-with-info">Are there any timer controls on small power equipment? <button type="button" class="info-icon" data-info="i.e. vending machines, printers and copiers">i</button></label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="smallPowerTimers" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="smallPowerTimers" value="No"> No</label>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Lifts & Escalators</h3>
+            <div class="form-group">
+                <label>Are stairs an open and attractive alternative to lifts and escalators?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="stairsAlternative" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="stairsAlternative" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="stairsAlternative" value="Not applicable"> Not applicable</label>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Pools</h3>
+            <div class="form-group">
+                <label>Is the pool complex fitted with energy meters?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="poolMeters" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="poolMeters" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="poolMeters" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="poolMeters" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Is the pool hall and changing rooms sealed with air-locked doors or similar?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="poolAirLock" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="poolAirLock" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="poolAirLock" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Is the pool fitted with covers?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="poolCoversFitted" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="poolCoversFitted" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="poolCoversFitted" value="No"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Where pool covers exist, are they used correctly and on a regular basis?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="poolCoversUsed" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="poolCoversUsed" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="poolCoversUsed" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="poolCoversUsed" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Is the pool hall ventilation system fitted with humidity controls?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="poolHumidityControls" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="poolHumidityControls" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="poolHumidityControls" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="poolHumidityControls" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Are heat recovery devices installed to pool water and pool hall heating systems?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="poolHeatRecovery" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="poolHeatRecovery" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="poolHeatRecovery" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="poolHeatRecovery" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Catering</h3>
+            <div class="form-group">
+                <label class="label-with-info">Does utilisation of large pieces of equipment vary throughout the day? <button type="button" class="info-icon" data-info="i.e. ovens or dishwashers operated at less than full capacity">i</button></label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="cateringUtilisation" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="cateringUtilisation" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="cateringUtilisation" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="cateringUtilisation" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Do the catering appliances look in good condition?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="cateringCondition" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="cateringCondition" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="cateringCondition" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="label-with-info">Are refrigerators thermally isolated from other catering equipment? <button type="button" class="info-icon" data-info="i.e. ovens &amp; dishwashers">i</button></label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="fridgeIsolated" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="fridgeIsolated" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="fridgeIsolated" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="fridgeIsolated" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Are refrigerators fitted with heat recovery?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="fridgeHeatRecovery" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="fridgeHeatRecovery" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="fridgeHeatRecovery" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="fridgeHeatRecovery" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Steam</h3>
+            <div class="form-group">
+                <label>Is there a real need for process steam? Are there any alternative solutions?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="steamNeed" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="steamNeed" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="steamNeed" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="steamNeed" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Has the steam boiler energy performance inspection been carried out in the past 12 months?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="steamInspection" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="steamInspection" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="steamInspection" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="steamInspection" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Is there a strategic plan for regularly checking that the steam boiler plant is operating efficiently?</label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="steamStrategicPlan" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="steamStrategicPlan" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="steamStrategicPlan" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="steamStrategicPlan" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="label-with-info">Is the steam plant in good condition? <button type="button" class="info-icon" data-info="i.e. free from any leaking, fouling, corrosion and is suitably insulated">i</button></label>
+                <div class="choice-list inline">
+                    <label class="choice-item"><input type="radio" name="steamPlantCondition" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="steamPlantCondition" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="steamPlantCondition" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="steamPlantCondition" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Is heat recovery utilised on the steam generator plant?</label>
+                <div class="choice-list inline" onchange="toggleConditionalBlock('steamHeatRecovery', 'steamHeatRecoveryBlock', ['No'], 'steamRecs')">
+                    <label class="choice-item"><input type="radio" name="steamHeatRecovery" value="N/A"> N/A</label>
+                    <label class="choice-item"><input type="radio" name="steamHeatRecovery" value="Yes"> Yes</label>
+                    <label class="choice-item"><input type="radio" name="steamHeatRecovery" value="No"> No</label>
+                    <label class="choice-item"><input type="radio" name="steamHeatRecovery" value="Don't know"> Don't know</label>
+                </div>
+            </div>
+            <div id="steamHeatRecoveryBlock" class="conditional-block amber">
+                <h4>Possible Recommendations (no heat recovery)</h4>
+                <div class="rec-list">
+                    <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="steamRecs" data-rec="Maximising hot condensate return to the boiler furnace"> Maximising hot condensate return to the boiler furnace</label>
+                    <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="steamRecs" data-rec="Recovering heat from the boiler exhaust gases"> Recovering heat from the boiler exhaust gases</label>
+                    <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="steamRecs" data-rec="Installing heat recovery to steam boiler blowdown"> Installing heat recovery to steam boiler blowdown</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: ALTERNATIVE ENERGY & RECOMMENDATIONS -->
+        <div class="tab-panel">
+            <h2 class="section-title">Alternative Energy & Site Recommendations</h2>
+
+            <h3 class="subsection-title">Alternative Energy &mdash; Possible Site Recommendations</h3>
+            <div class="rec-list">
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="altEnergyRecs" data-rec="Heating the building with biomass boilers"> Heating the building with biomass boilers</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="altEnergyRecs" data-rec="Small scale Tri-Generation system as an alternative to separate boiler and chiller system"> Small scale Tri-Generation system as an alternative to separate boiler and chiller system</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="altEnergyRecs" data-rec="Combined Heating and Power (CHP)"> Combined Heating and Power (CHP)</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="altEnergyRecs" data-rec="Ground source heat pumps"> Ground source heat pumps</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="altEnergyRecs" data-rec="Photovoltaics"> Photovoltaics</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="altEnergyRecs" data-rec="Solar water"> Solar water</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="altEnergyRecs" data-rec="Wind turbines within site curtilage"> Wind turbines within site curtilage</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="altEnergyRecs" data-rec="Building mounted wind turbines"> Building mounted wind turbines</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="altEnergyRecs" data-rec="Hydro-electric generator"> Hydro-electric generator</label>
+            </div>
+
+            <hr class="divider">
+
+            <h3 class="subsection-title">Other Recommendations &mdash; Data</h3>
+            <div class="rec-list">
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="dataRecs" data-rec="Consider monitoring half-hourly automated meter reading technology (AMR) to the energy meters on site. This can be very cost effective and provides half-hourly consumption profiles to be obtained. In turn this allows inefficiencies to be easily spotted."> Consider monitoring half-hourly automated meter reading technology (AMR) to the energy meters on site. This can be very cost effective and provides half-hourly consumption profiles to be obtained, allowing inefficiencies to be easily spotted.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="dataRecs" data-rec="There are already plans to consider provisions for electrical sub metering. Consider additional sub metering for gas and electric, to enable a more accurate Operational Rating on the future Display Energy Certificates."> There are already plans to consider provisions for electrical sub metering. Consider additional sub metering for gas and electric, to enable a more accurate Operational Rating on future Display Energy Certificates.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="dataRecs" data-rec="Consider supplying meter reading for the energy use for each building, to enable a more accurate Operational Rating on the future Display Energy Certificates."> Consider supplying meter reading for the energy use for each building, to enable a more accurate Operational Rating on future Display Energy Certificates.</label>
+            </div>
+
+            <h3 class="subsection-title">Other Recommendations &mdash; Building Fabric</h3>
+            <div class="rec-list">
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricNarrativeRecs" data-rec="Existing building fabric is largely uninsulated. Consider cavity or internal/external insulation installation."> Existing building fabric is largely uninsulated. Consider cavity or internal/external insulation installation.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricNarrativeRecs" data-rec="Building fabric is of various ages. Consider checking for cavity wall insulation on the various build dates and insulate where needed."> Building fabric is of various ages. Consider checking for cavity wall insulation on the various build dates and insulate where needed.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricNarrativeRecs" data-rec="Building fabric is of various ages. Consider checking for cavity wall insulation and loft insulation levels on the various build dates and insulate where needed."> Building fabric is of various ages. Consider checking for cavity wall insulation and loft insulation levels on the various build dates and insulate where needed.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="fabricNarrativeRecs" data-rec="Consider the installation of suspended ceilings in classrooms with high ceilings. This can help reduce heating demand and reduce stratification."> Consider the installation of suspended ceilings in classrooms with high ceilings. This can help reduce heating demand and reduce stratification.</label>
+            </div>
+
+            <h3 class="subsection-title">Other Recommendations &mdash; Lighting</h3>
+            <div class="rec-list">
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="lightingNarrativeRecs" data-rec="Consider a complete roll-out of LED lighting and control systems."> Consider a complete roll-out of LED lighting and control systems.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="lightingNarrativeRecs" data-rec="Consider installing additional lighting controls such as occupancy detectors to ensure that lights are not left on when rooms are not occupied. Toilets and storerooms for example."> Consider installing additional lighting controls such as occupancy detectors to ensure that lights are not left on when rooms are not occupied &mdash; toilets and storerooms for example.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="lightingNarrativeRecs" data-rec="Where possible maximise the use of natural light. In order to achieve this, it may be required to split or alter the lighting circuits into additional zones. This should allow staff to switch off lighting near glazed openings or install automatic lighting controls by means of lux level photocell controls."> Where possible maximise the use of natural light. This may require splitting or altering the lighting circuits into additional zones, allowing staff to switch off lighting near glazed openings, or installing automatic lighting controls by means of lux level photocell controls.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="lightingNarrativeRecs" data-rec="Late-night or early-morning sports sessions may mean heating parts of the building at unusual times, but only heat areas that are necessary for the requirements."> Late-night or early-morning sports sessions may mean heating parts of the building at unusual times, but only heat areas that are necessary for the requirements.</label>
+            </div>
+
+            <h3 class="subsection-title">Other Recommendations &mdash; HVAC</h3>
+            <div class="rec-list">
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacNarrativeRecs" data-rec="Consider replacing the heating boiler plant with a higher efficiency type."> Consider replacing the heating boiler plant with a higher efficiency type.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacNarrativeRecs" data-rec="Consider upgrading the air conditioning systems with a modern VRF system."> Consider upgrading the air conditioning systems with a modern VRF system.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="hvacNarrativeRecs" data-rec="Some valves and pumps in the plant room are uninsulated, consider insulating to prevent wasted heat loss."> Some valves and pumps in the plant room are uninsulated. Consider insulating to prevent wasted heat loss.</label>
+            </div>
+
+            <h3 class="subsection-title">Other Recommendations &mdash; Occupancy Behaviour</h3>
+            <div class="rec-list">
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="occupancyNarrativeRecs" data-rec="Staff awareness raising programme to monitor energy use. For example, encourage staff members to maximise the use of natural daylight."> Staff awareness raising programme to monitor energy use. For example, encourage staff members to maximise the use of natural daylight.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="occupancyNarrativeRecs" data-rec="Switch off computer monitors after each use or use the power settings in Windows to turn off the monitor after half an hour of inactivity."> Switch off computer monitors after each use or use the power settings in Windows to turn off the monitor after half an hour of inactivity.</label>
+                <label class="rec-item"><input type="checkbox" class="rec-checkbox" name="occupancyNarrativeRecs" data-rec="Engage with staff to introduce enhanced energy housekeeping. Simple housekeeping measures such as ensuring window openings are utilised correctly, blinds lifted, lights and PCs switched off can deliver quick and cost-effective results, though can be subject to a reduced effect over time. To aid long term compliance, consider appointing carbon champions within the building."> Engage with staff to introduce enhanced energy housekeeping. Simple housekeeping measures such as ensuring window openings are utilised correctly, blinds lifted, lights and PCs switched off can deliver quick and cost-effective results, though can be subject to a reduced effect over time. To aid long term compliance, consider appointing carbon champions within the building.</label>
+            </div>
+        </div>
+
+        <!-- TAB 7: NOTES & SIGN OFF -->
+        <div class="tab-panel">
+            <h2 class="section-title">Notes & Sign Off</h2>
+
+            <div class="form-group">
+                <label for="otherNotes2">Other Notes</label>
+                <textarea id="otherNotes2" name="otherNotes2" placeholder="Any additional observations from the site visit..."></textarea>
+            </div>
+
+            <div class="form-group summary-box">
+                <label>Compiled Recommendations Summary <span class="summary-count" id="recCount">0</span></label>
+                <p class="helper-text">Auto-generated from every recommendation ticked across this form. This is what gets sent to the office along with your answers.</p>
+                <textarea id="recommendationsSummary" name="recommendationsSummary" readonly placeholder="No recommendations selected yet."></textarea>
+            </div>
+
+            <!-- Styled HTML version of every answer on the form. Populated automatically right
+                 before sending — include {{fullSummary}} in your EmailJS template body (as the
+                 only content, no <pre> wrapper) to have it appear in the email as a branded,
+                 nicely formatted report. -->
+            <textarea id="fullSummary" name="fullSummary" style="display:none;"></textarea>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-secondary" id="previewBtn" onclick="openPrintableSummary()" style="width:100%;">
+                    Preview / Print Summary
+                </button>
+            </div>
+
+            <hr class="divider">
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="signedOff" class="required-field">Surveyor Name (Sign Off)</label>
+                    <input type="text" id="signedOff" name="signedOff" required>
+                </div>
+                <div class="form-group">
+                    <label for="signOffDate" class="required-field">Date Signed</label>
+                    <input type="date" id="signOffDate" name="signOffDate" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <button type="button" class="btn btn-secondary" id="prevBtn" onclick="changeStep(-1)" disabled>Back</button>
+            <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">Next Section</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // --- EMAILJS CONFIG ---
+    const EMAILJS_PUBLIC_KEY = "xdCWi9zAQlP5rqSzG";
+    const EMAILJS_SERVICE_ID = "service_y5drris";
+    const EMAILJS_TEMPLATE_ID = "template_3vpvpyy";
+    // ------------------------
+
+    (function() {
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    })();
+
+    let currentStep = 0;
+    let maxUnlockedStep = 0;
+
+    const panels = document.querySelectorAll('.tab-panel');
+    const steps = document.querySelectorAll('.tab-step');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const decForm = document.getElementById('decForm');
+
+    function updateStepStyles() {
+        steps.forEach((step, idx) => {
+            step.classList.remove('active', 'completed');
+            if (idx === currentStep) {
+                step.classList.add('active');
+                step.style.cursor = 'default';
+            } else if (idx <= maxUnlockedStep) {
+                step.classList.add('completed');
+                step.style.cursor = 'pointer';
+            } else {
+                step.style.cursor = 'not-allowed';
+            }
+        });
+        updateProgressBar();
+    }
+
+    function updateProgressBar() {
+        const total = steps.length;
+        const percent = (currentStep / (total - 1)) * 100;
+        document.getElementById('progressFill').style.width = percent + '%';
+        const heading = document.getElementById('mobileStepHeading');
+        if (heading) {
+            heading.textContent = `Step ${currentStep + 1} of ${total}: ${steps[currentStep].textContent}`;
+        }
+    }
+
+    function navigateToStep(targetIndex) {
+        closeInfoPopover();
+        if (targetIndex <= maxUnlockedStep) {
+            panels[currentStep].classList.remove('active');
+            currentStep = targetIndex;
+            panels[currentStep].classList.add('active');
+            updateStepStyles();
+            updateFooterButtons();
+        }
+    }
+
+    function validateCurrentPanel() {
+        const currentPanel = panels[currentStep];
+        const requiredInputs = currentPanel.querySelectorAll('[required]');
+
+        let allValid = true;
+        requiredInputs.forEach(input => {
+            if (input.type === 'radio') {
+                const group = currentPanel.querySelectorAll(`input[name="${input.name}"]`);
+                const checked = Array.from(group).some(r => r.checked);
+                if (!checked) {
+                    allValid = false;
+                }
+            } else if (!input.checkValidity()) {
+                input.reportValidity();
+                allValid = false;
+            }
+        });
+
+        if (!allValid && currentStep === 0) {
+            const metersChecked = document.querySelector('input[name="metersIdentified"]:checked');
+            if (!metersChecked) alert("Please answer whether meters have been identified to continue.");
+        }
+
+        return allValid;
+    }
+
+    function changeStep(direction) {
+        closeInfoPopover();
+        if (direction === 1) {
+            if (!validateCurrentPanel()) return;
+            if (currentStep === maxUnlockedStep) {
+                maxUnlockedStep++;
+            }
+        }
+
+        panels[currentStep].classList.remove('active');
+        currentStep += direction;
+        panels[currentStep].classList.add('active');
+
+        steps[currentStep].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+        updateStepStyles();
+        updateFooterButtons();
+    }
+
+    function updateFooterButtons() {
+        prevBtn.disabled = (currentStep === 0);
+        if (currentStep === panels.length - 1) {
+            nextBtn.textContent = "Submit Checklist";
+            nextBtn.type = "submit";
+            nextBtn.onclick = null;
+        } else {
+            nextBtn.textContent = "Next Section";
+            nextBtn.type = "button";
+            nextBtn.onclick = function() { changeStep(1); };
+        }
+    }
+
+    // Generic handler for "show this block when the radio answer matches" logic.
+    // Replaces the three near-identical toggle*Block functions that used to live here.
+    // --- Info icon popovers (replaces static helper text under questions) ---
+    let activeInfoIcon = null;
+    const infoPopover = document.createElement('div');
+    infoPopover.className = 'info-popover';
+    document.body.appendChild(infoPopover);
+
+    function closeInfoPopover() {
+        infoPopover.classList.remove('visible');
+        if (activeInfoIcon) activeInfoIcon.classList.remove('active');
+        activeInfoIcon = null;
+    }
+
+    function openInfoPopover(icon) {
+        infoPopover.textContent = icon.getAttribute('data-info');
+        infoPopover.classList.add('visible');
+        icon.classList.add('active');
+        activeInfoIcon = icon;
+
+        const iconRect = icon.getBoundingClientRect();
+        const popRect = infoPopover.getBoundingClientRect();
+        const margin = 12;
+
+        let left = iconRect.left;
+        left = Math.min(left, window.innerWidth - popRect.width - margin);
+        left = Math.max(margin, left);
+
+        let top = iconRect.bottom + 8;
+        if (top + popRect.height > window.innerHeight - margin) {
+            top = iconRect.top - popRect.height - 8;
+        }
+
+        infoPopover.style.left = left + 'px';
+        infoPopover.style.top = top + 'px';
+    }
+
+    document.querySelectorAll('.info-icon').forEach(icon => {
+        icon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            if (activeInfoIcon === icon) {
+                closeInfoPopover();
+            } else {
+                closeInfoPopover();
+                openInfoPopover(icon);
+            }
+        });
+    });
+
+    document.addEventListener('click', closeInfoPopover);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeInfoPopover();
+    });
+    window.addEventListener('resize', closeInfoPopover);
+    window.addEventListener('scroll', closeInfoPopover, true);
+
+    function toggleConditionalBlock(radioName, blockId, showValues, recCheckboxName) {
+        const radios = document.getElementsByName(radioName);
+        let selectedValue = "";
+        for (const radio of radios) {
+            if (radio.checked) { selectedValue = radio.value; break; }
+        }
+        const show = showValues.includes(selectedValue);
+        document.getElementById(blockId).style.display = show ? 'block' : 'none';
+        if (!show && recCheckboxName) {
+            document.getElementsByName(recCheckboxName).forEach(cb => { cb.checked = false; });
+            updateRecommendationsSummary();
+        }
+    }
+
+    // --- Generic answer collector: walks every section and reads whatever's
+    // been filled in, so this stays correct even if questions are added or
+    // reworded later. Only reads label+control pairs that are DIRECT children
+    // of a .form-group / .conditional-block, which is how question labels are
+    // told apart from the little Yes/No/checkbox option labels nested inside them.
+    function getSectionsAnswers() {
+        const sections = [];
+        panels.forEach(panel => {
+            const titleEl = panel.querySelector(':scope > h2.section-title');
+            const title = titleEl ? titleEl.textContent.trim() : '';
+            const items = [];
+
+            panel.querySelectorAll('.form-group, .conditional-block').forEach(container => {
+                if (container.classList.contains('summary-box')) return;
+                if (container.querySelector('#assessorEmail')) return;
+
+                const labelEl = container.querySelector(':scope > label');
+                if (!labelEl) return;
+                const labelClone = labelEl.cloneNode(true);
+                labelClone.querySelectorAll('button, .summary-count').forEach(el => el.remove());
+                const question = labelClone.textContent.trim();
+                if (!question) return;
+
+                let answer = null;
+                const radios = container.querySelectorAll(':scope > .choice-list input[type="radio"]');
+                if (radios.length) {
+                    const checked = Array.from(radios).find(r => r.checked);
+                    answer = checked ? checked.value : '(not answered)';
+                } else {
+                    const select = container.querySelector(':scope > select');
+                    const textarea = container.querySelector(':scope > textarea:not([readonly])');
+                    const textInput = container.querySelector(':scope > input[type="text"], :scope > input[type="email"], :scope > input[type="date"], :scope > input[type="time"]');
+                    if (select) {
+                        answer = select.value || '(not answered)';
+                    } else if (textarea) {
+                        answer = textarea.value.trim() || '(no notes)';
+                    } else if (textInput) {
+                        answer = textInput.value.trim() || '(not answered)';
+                    }
+                }
+                if (answer !== null) items.push({ question, answer });
+            });
+
+            if (items.length) sections.push({ title, items });
+        });
+        return sections;
+    }
+
+    function reportMeta() {
+        const val = id => (document.getElementById(id) ? document.getElementById(id).value.trim() : '');
+        return {
+            buildingName: val('buildingName') || '-',
+            postcode: val('postcode') || '-',
+            address1: val('address1') || '-',
+            surveyDate: val('surveyDate') || '-',
+            surveyTime: val('surveyTime') || '',
+            surveyorName: val('surveyorName') || '-',
+            assessorEmail: val('assessorEmail') || '-',
+            signedOff: val('signedOff') || '-',
+            signOffDate: val('signOffDate') || '-'
+        };
+    }
+
+    // Styled HTML version of the whole form, sent inside the email itself.
+    // Uses inline styles + tables (not <style> blocks or CSS grid) because
+    // Gmail/Outlook strip or ignore those in email bodies.
+    // Include {{fullSummary}} in your EmailJS template body (as the only
+    // content — don't wrap it in <pre> or escape it) to display it.
+    function buildFullSummaryText() {
+        const meta = reportMeta();
+        const sections = getSectionsAnswers();
+        const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+        const sectionsHtml = sections.map(section => `
+          <tr><td style="padding:22px 0 8px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+              <tr><td colspan="2" style="font-size:15px;font-weight:600;color:#2D6A6A;border-bottom:2px solid #E2E8F0;padding-bottom:6px;font-family:'Segoe UI',Arial,sans-serif;">${esc(section.title)}</td></tr>
+              ${section.items.map(item => `
+                <tr>
+                  <td style="padding:8px 6px;font-size:13px;color:#334155;width:55%;border-bottom:1px solid #F1F5F9;vertical-align:top;font-family:'Segoe UI',Arial,sans-serif;">${esc(item.question)}</td>
+                  <td style="padding:8px 6px;font-size:13px;font-weight:600;color:#1E293B;width:45%;border-bottom:1px solid #F1F5F9;vertical-align:top;font-family:'Segoe UI',Arial,sans-serif;">${esc(item.answer)}</td>
+                </tr>
+              `).join('')}
+            </table>
+          </td></tr>
+        `).join('');
+
+        const recsRaw = document.getElementById('recommendationsSummary').value;
+        const recsHtml = recsRaw
+            ? recsRaw.split('\n\n').filter(Boolean).map(r => `<li style="margin-bottom:8px;">${esc(r.replace(/^\u2022\s*/, ''))}</li>`).join('')
+            : '<li>None selected.</li>';
+
+        const html = `
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:700px;margin:0 auto;font-family:'Segoe UI',Arial,sans-serif;color:#1E293B;">
+          <tr><td style="background:#2D6A6A;color:#ffffff;padding:22px 30px;border-radius:12px 12px 0 0;border-bottom:4px solid #7FE5C9;">
+            <div style="font-size:19px;font-weight:600;margin-bottom:4px;">DEC Site Survey Checklist &mdash; Summary</div>
+            <div style="font-size:13px;opacity:0.9;">CSR Sustain</div>
+          </td></tr>
+          <tr><td style="background:#F8FAFC;border:1px solid #E2E8F0;border-top:none;padding:18px 30px;border-radius:0 0 12px 12px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:13px;">
+              <tr>
+                <td style="padding:4px 0;width:50%;"><strong style="color:#2D6A6A;">Building:</strong> ${esc(meta.buildingName)}</td>
+                <td style="padding:4px 0;width:50%;"><strong style="color:#2D6A6A;">Postcode:</strong> ${esc(meta.postcode)}</td>
+              </tr>
+              <tr>
+                <td style="padding:4px 0;" colspan="2"><strong style="color:#2D6A6A;">Address:</strong> ${esc(meta.address1)}</td>
+              </tr>
+              <tr>
+                <td style="padding:4px 0;"><strong style="color:#2D6A6A;">Survey Date:</strong> ${esc(meta.surveyDate)} ${esc(meta.surveyTime)}</td>
+                <td style="padding:4px 0;"><strong style="color:#2D6A6A;">Surveyor:</strong> ${esc(meta.surveyorName)}</td>
+              </tr>
+            </table>
+          </td></tr>
+          ${sectionsHtml}
+          <tr><td style="padding:22px 0 8px 0;">
+            <div style="font-size:15px;font-weight:600;color:#2D6A6A;border-bottom:2px solid #E2E8F0;padding-bottom:6px;margin-bottom:10px;">Recommendations</div>
+            <ul style="font-size:13px;padding-left:20px;margin:0;">${recsHtml}</ul>
+          </td></tr>
+          <tr><td style="padding-top:26px;font-size:12px;color:#64748B;">Signed off by ${esc(meta.signedOff)} on ${esc(meta.signOffDate)}</td></tr>
+        </table>`;
+
+        document.getElementById('fullSummary').value = html;
+        return html;
+    }
+
+    // Branded, printable HTML version — opened in a new tab so the assessor
+    // can print it or "Save as PDF" straight from the browser.
+    function buildPrintableHTML() {
+        const meta = reportMeta();
+        const sections = getSectionsAnswers();
+        const recsRaw = document.getElementById('recommendationsSummary').value;
+        const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+        const sectionsHtml = sections.map(section => `
+            <h2>${esc(section.title)}</h2>
+            <table>
+                ${section.items.map(item => `
+                    <tr>
+                        <td class="q">${esc(item.question)}</td>
+                        <td class="a">${esc(item.answer)}</td>
+                    </tr>
+                `).join('')}
+            </table>
+        `).join('');
+
+        const recsHtml = recsRaw
+            ? recsRaw.split('\n\n').filter(Boolean).map(r => `<li>${esc(r.replace(/^\u2022\s*/, ''))}</li>`).join('')
+            : '<li>None selected.</li>';
+
+        return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DEC Site Survey Summary - ${esc(meta.buildingName)}</title>
+<style>
+  :root { --primary-color:#2D6A6A; --secondary-color:#7FE5C9; --text-color:#1E293B; --border-color:#E2E8F0; }
+  body { font-family:'Segoe UI', system-ui, -apple-system, sans-serif; color:var(--text-color); margin:0; padding:40px; max-width:800px; }
+  .header { background:var(--primary-color); color:#fff; padding:24px 32px; border-radius:12px 12px 0 0; border-bottom:4px solid var(--secondary-color); }
+  .header h1 { margin:0 0 4px 0; font-size:22px; }
+  .header p { margin:0; font-size:13px; opacity:0.9; }
+  .meta { background:#F8FAFC; border:1px solid var(--border-color); border-top:none; padding:20px 32px; border-radius:0 0 12px 12px; margin-bottom:30px; display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; font-size:13px; }
+  .meta strong { color:var(--primary-color); }
+  h2 { font-size:16px; color:var(--primary-color); border-bottom:1px solid var(--border-color); padding-bottom:6px; margin-top:34px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  td { padding:8px 6px; vertical-align:top; border-bottom:1px solid #F1F5F9; }
+  td.q { width:55%; color:#334155; }
+  td.a { width:45%; font-weight:600; }
+  ul { font-size:13px; padding-left:20px; }
+  li { margin-bottom:8px; }
+  .print-btn { position:fixed; top:20px; right:20px; background:var(--primary-color); color:#fff; border:none; padding:10px 18px; border-radius:8px; font-size:14px; cursor:pointer; }
+  @media print { .print-btn { display:none; } body { padding:0; max-width:none; } }
+</style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+  <div class="header">
+    <h1>DEC Site Survey Checklist &mdash; Summary</h1>
+    <p>CSR Sustain</p>
+  </div>
+  <div class="meta">
+    <div><strong>Building:</strong> ${esc(meta.buildingName)}</div>
+    <div><strong>Postcode:</strong> ${esc(meta.postcode)}</div>
+    <div><strong>Address:</strong> ${esc(meta.address1)}</div>
+    <div><strong>Survey Date:</strong> ${esc(meta.surveyDate)} ${esc(meta.surveyTime)}</div>
+    <div><strong>Surveyor:</strong> ${esc(meta.surveyorName)}</div>
+    <div><strong>Report sent to:</strong> ${esc(meta.assessorEmail)}</div>
+  </div>
+  ${sectionsHtml}
+  <h2>Recommendations</h2>
+  <ul>${recsHtml}</ul>
+  <p style="margin-top:40px; font-size:12px; color:#64748B;">Signed off by ${esc(meta.signedOff)} on ${esc(meta.signOffDate)}</p>
+</body>
+</html>`;
+    }
+
+    function openPrintableSummary() {
+        const html = buildPrintableHTML();
+        const win = window.open('', '_blank');
+        if (!win) {
+            alert('Please allow pop-ups for this site to preview or print the summary.');
+            return;
+        }
+        win.document.open();
+        win.document.write(html);
+        win.document.close();
+    }
+
+    function updateRecommendationsSummary() {
+        const checked = decForm.querySelectorAll('.rec-checkbox:checked');
+        const items = Array.from(checked).map(cb => cb.getAttribute('data-rec'));
+        const summaryField = document.getElementById('recommendationsSummary');
+        summaryField.value = items.length ? items.map(t => "\u2022 " + t).join("\n\n") : "";
+        document.getElementById('recCount').textContent = items.length;
+
+        decForm.querySelectorAll('.rec-checkbox').forEach(cb => {
+            cb.closest('.rec-item').classList.toggle('checked', cb.checked);
+        });
+    }
+
+    decForm.addEventListener('change', function(e) {
+        if (e.target.classList && e.target.classList.contains('rec-checkbox')) {
+            updateRecommendationsSummary();
+        }
+    });
+
+    decForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (!validateCurrentPanel()) return;
+
+        buildFullSummaryText();
+
+        nextBtn.disabled = true;
+        nextBtn.textContent = "Sending Checklist...";
+
+        emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+            .then(() => {
+                alert('Thank you! The completed site survey checklist has been emailed to ' + document.getElementById('assessorEmail').value + '. A printable copy will open now too.');
+                nextBtn.textContent = "Checklist Submitted";
+                openPrintableSummary();
+            }, (error) => {
+                alert('Submission failed. Please check your EmailJS config: ' + JSON.stringify(error));
+                nextBtn.disabled = false;
+                nextBtn.textContent = "Submit Checklist";
+            });
+    });
+
+    updateStepStyles();
+    updateRecommendationsSummary();
+</script>
+
+</body>
+</html>
